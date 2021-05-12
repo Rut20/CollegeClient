@@ -1,0 +1,44 @@
+<mat-form-field>
+    <mat-label>
+        <mat-icon>search</mat-icon> Name\ ID number
+    </mat-label>
+    <input matInput type="text" [(ngModel)]="param">
+    <button mat-button *ngIf="param" matSuffix mat-icon-button aria-label="Clear" (click)="param=''; clear()">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+
+<button mat-flat-button color="accent" (click)="search()">search</button>
+
+<table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef>Last name</mat-header-cell>
+        <mat-cell *matCellDef="let student">{{student.lastName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef>First name</mat-header-cell>
+        <mat-cell *matCellDef="let student"> {{student.firstName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="genderC">
+        <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>
+        <mat-cell *matCellDef="let student">{{student.genderC}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="age">
+        <mat-header-cell *matHeaderCellDef>Age</mat-header-cell>
+        <mat-cell *matCellDef="let student">{{student.age}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="idNumber">
+        <mat-header-cell *matHeaderCellDef>ID number</mat-header-cell>
+        <mat-cell *matCellDef="let student"><a [routerLink]="['/details', student.id]"
+                (click)="_service.isValid=true">{{student.idNumber}}</a>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+
+</table>

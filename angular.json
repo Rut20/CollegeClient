@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "CollegeApp"
+  "defaultProject": "CollegeApp",
+  "cli": {
+    "analytics": false
+  }
 }
